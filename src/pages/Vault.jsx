@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import supabase from "../supabaseClient";
 import FileCard from "../components/FileCard";
 
@@ -7,23 +6,26 @@ export default function Vault() {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
-    load();
+    const fetchFiles = async () => {
+      const { data, error } = await supabase.storage.from("vault").list();
+      if (error) console.log("Supabase error:", error);
+      else setFiles(data);
+    };
+    fetchFiles();
   }, []);
 
-  const load = async () => {
-    const { data } = await supabase.storage.from("vault").list();
-    setFiles(data || []);
-  };
-
   return (
-    <div>
-      <h1 className="text-4xl mb-6">Your Holo Vault</h1>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {files.map((f) => (
-          <FileCard file={f} key={f.name} />
-        ))}
-      </div>
+    <div className="space-y-4">
+      <h1 className="text-3xl font-bold mb-4">Vault</h1>
+      {files.length === 0 ? (
+        <p>No files yet.</p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {files.map((file) => (
+            <FileCard key={file.name} file={file} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
