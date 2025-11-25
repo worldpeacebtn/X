@@ -1,32 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import supabase from "../supabaseClient";
-import HoloCard from "../components/HoloCard";
-import { Link } from "react-router-dom";
 
 export default function Vault() {
   const [files, setFiles] = useState([]);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    supabase.storage.from("vault").list().then(({ data, error }) => {
-      if (error) console.error(error);
-      else setFiles(data);
-    });
+    fetchFiles();
   }, []);
 
+  const fetchFiles = async () => {
+    const { data, error } = await supabase.storage.from("vault").list();
+    if (!error) setFiles(data);
+  };
+
+  const handleUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setUploading(true);
+    const { error } = await supabase.storage.from("vault").upload(file.name, file, { upsert: true });
+    setUploading(false);
+    if (!error) fetchFiles();
+  };
+
   return (
-    <div className="space-y-6">
-      <h1 className="text-4xl font-extrabold text-white text-center mb-4">Vault</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="p-8">
+      <h1 className="text-white text-3xl mb-6">Vault</h1>
+      <label className="cursor-pointer px-6 py-3 bg-blue-500 text-black rounded mr-4">
+        {uploading ? "Uploading..." : "Upload File"}
+        <input type="file" className="hidden" onChange={handleUpload} />
+      </label>
+      <div className="mt-6 space-y-4">
         {files.map((file) => (
-          <HoloCard key={file.name}>
-            <h2 className="text-lg font-semibold truncate">{file.name}</h2>
-            <Link
-              to={`/file/${file.name}`}
-              className="mt-2 inline-block text-blue-400 hover:underline"
-            >
+          <div key={file.name} className="p-4 bg-white/5 border border-white/10 rounded">
+            <div className="text-white">{file.name}</div>
+            <a className="text-blue-400 hover:underline" href={`/file/${file.name}`}>
               Preview / Download
-            </Link>
-          </HoloCard>
+            </a>
+          </div>
         ))}
       </div>
     </div>
