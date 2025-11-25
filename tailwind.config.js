@@ -10,6 +10,8 @@ export default {
       fontFamily: {
         orbitron: ["Orbitron", "sans-serif"],
       },
+          boxShadow: {
+      neon: "0 0 15px #00ffff, 0 0 30px #00ffff, 0 0 50px #00ffff",
     },
   },
   plugins: [],
