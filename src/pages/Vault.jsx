@@ -4,23 +4,45 @@ import FileCard from "../components/FileCard";
 
 export default function Vault() {
   const [files, setFiles] = useState([]);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
-    const fetchFiles = async () => {
-      const { data, error } = await supabase.storage.from("vault").list();
-      if (error) console.log("Supabase error:", error);
-      else setFiles(data);
-    };
     fetchFiles();
   }, []);
 
+  const fetchFiles = async () => {
+    const { data, error } = await supabase.storage.from("vault").list();
+    if (error) console.log("Supabase error:", error);
+    else setFiles(data);
+  };
+
+  const handleUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setUploading(true);
+    const { data, error } = await supabase.storage.from("vault").upload(file.name, file);
+    setUploading(false);
+
+    if (error) console.log("Upload error:", error);
+    else fetchFiles(); // refresh vault
+  };
+
   return (
-    <div className="space-y-4">
-      <h1 className="text-3xl font-bold mb-4">Vault</h1>
+    <div className="space-y-6">
+      <h1 className="text-4xl font-bold text-center mb-4">Vault</h1>
+
+      <div className="flex justify-center">
+        <label className="cursor-pointer px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-semibold">
+          {uploading ? "Uploading..." : "Upload File"}
+          <input type="file" onChange={handleUpload} className="hidden" />
+        </label>
+      </div>
+
       {files.length === 0 ? (
-        <p>No files yet.</p>
+        <p className="text-center text-gray-400 mt-10">No files uploaded yet.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
           {files.map((file) => (
             <FileCard key={file.name} file={file} />
           ))}
