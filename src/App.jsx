@@ -10,6 +10,8 @@ import FileView from "./pages/FileView";
 import Share from "./pages/Share";
 import Profile from "./pages/Profile";
 
+import FilePage from "./pages/FilePage";
+
 export default function App() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-[#050b1a] text-white">
