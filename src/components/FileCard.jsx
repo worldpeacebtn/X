@@ -12,8 +12,6 @@ export default function FileCard({ file }) {
         Preview
       </Link>
   Preview
-</a>
-
     </div>
   );
 }
