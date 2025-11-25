@@ -1,5 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
+import { Suspense } from "react";
+
 
 export default function App() {
   return (
@@ -7,8 +9,10 @@ export default function App() {
 
       {/* 3D Background */}
 <Canvas className="absolute inset-0 w-full h-full !z-0">
+    <Suspense fallback={null}>
         <Stars radius={80} depth={50} count={5000} factor={4} saturation={0} fade />
         <OrbitControls enableZoom={false} enablePan={false} />
+        </Suspense>
       </Canvas>
 
       {/* Content */}
