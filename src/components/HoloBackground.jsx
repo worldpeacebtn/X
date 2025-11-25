@@ -7,12 +7,12 @@ export default function HoloBackground() {
     <Canvas className="absolute inset-0 w-full h-full !z-0" camera={{ position: [0, 0, 5] }}>
       <Stars
         radius={120}
-        depth={50}
-        count={8000}
+        depth={80}
+        count={10000}
         factor={4}
         saturation={0}
         fade
-        speed={1.5}
+        speed={2}
       />
       <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
     </Canvas>
