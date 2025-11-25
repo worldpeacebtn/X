@@ -6,7 +6,7 @@ export default function App() {
     <div className="relative min-h-screen w-full overflow-hidden">
 
       {/* 3D Background */}
-      <Canvas className="absolute top-0 left-0 !z-0">
+<Canvas className="absolute inset-0 w-full h-full !z-0">
         <Stars radius={80} depth={50} count={5000} factor={4} saturation={0} fade />
         <OrbitControls enableZoom={false} enablePan={false} />
       </Canvas>
