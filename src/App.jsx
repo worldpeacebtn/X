@@ -12,25 +12,9 @@ import Profile from "./pages/Profile";
 
 export default function App() {
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-[#050b1a] text-white">
-
-      {/* Hologram Universe Background */}
-      <HoloBackground />
-
-      {/* App Navigation */}
-      <NavBar />
-
-      {/* Routes */}
-      <div className="relative z-10 p-6 md:p-10">
-        <Routes>
-          <Route path="/" element={<Vault />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/upload" element={<Upload />} />
-          <Route path="/file/:id" element={<FileView />} />
-          <Route path="/share/:tag" element={<Share />} />
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
-      </div>
+    <div style={{ color: "white", fontSize: 40, padding: 40 }}>
+      🔥 App is working!
     </div>
   );
 }
+
