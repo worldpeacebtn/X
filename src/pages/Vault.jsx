@@ -21,19 +21,21 @@ export default function Vault() {
     if (!file) return;
 
     setUploading(true);
-    const { data, error } = await supabase.storage.from("vault").upload(file.name, file);
+    const { error } = await supabase.storage.from("vault").upload(file.name, file, {
+      upsert: true,
+    });
     setUploading(false);
 
     if (error) console.log("Upload error:", error);
-    else fetchFiles(); // refresh vault
+    else fetchFiles();
   };
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-4xl font-bold text-center mb-4">Vault</h1>
+    <div className="space-y-6 relative z-10">
+      <h1 className="text-4xl font-bold text-center">Vault</h1>
 
       <div className="flex justify-center">
-        <label className="cursor-pointer px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-semibold">
+        <label className="cursor-pointer px-6 py-3 rounded-full bg-holoBlue hover:bg-holoPurple text-black font-bold">
           {uploading ? "Uploading..." : "Upload File"}
           <input type="file" onChange={handleUpload} className="hidden" />
         </label>
