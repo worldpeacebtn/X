@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Routes, Route } from "react-router-dom";
 import HoloBackground from "./components/HoloBackground";
 import NavBar from "./components/NavBar";
