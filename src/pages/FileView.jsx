@@ -1,8 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import supabase from "../supabaseClient";
 
 export default function FileView() {
   const { id } = useParams();
-
-  return <h1>Preview for file: {id}</h1>;
+  // fetch and display file logic
+  return <div>File: {id}</div>;
 }
