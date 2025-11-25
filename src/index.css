@@ -3,7 +3,32 @@
 @tailwind utilities;
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   color: white;
-  background: #050b1a; /* holo dark space */
+  background: #050b1a;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: "Orbitron", sans-serif;
+}
+
+a {
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.backdrop-holo {
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 1rem;
+}
+
+.card {
+  @apply bg-white/5 border border-white/10 rounded-xl p-4 shadow-lg backdrop-blur-md;
 }
