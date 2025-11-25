@@ -7,11 +7,8 @@ export default function FilePage() {
   const [url, setUrl] = useState("");
 
   useEffect(() => {
-    const fetch = async () => {
-      const { data } = supabase.storage.from("vault").getPublicUrl(id);
-      setUrl(data.publicUrl);
-    };
-    fetch();
+    const { data } = supabase.storage.from("vault").getPublicUrl(id);
+    setUrl(data.publicUrl);
   }, [id]);
 
   return (
