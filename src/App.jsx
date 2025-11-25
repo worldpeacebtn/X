@@ -22,7 +22,7 @@ export default function App() {
           <Route path="/" element={<Vault />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/upload" element={<Upload />} />
-          <Route path="/file/:id" element={<FileView />} />
+          <Route path="/file/:id" element={<FilePage />} />
           <Route path="/share/:tag" element={<Share />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
