@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import React from "react";
 
 export default function FileView() {
   const { id } = useParams();
