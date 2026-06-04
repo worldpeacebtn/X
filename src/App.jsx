@@ -15,7 +15,11 @@ import FilePage from "./pages/FilePage";
 export default function App() {
   return (
 <div className="fixed top-0 left-0 w-screen h-screen flex overflow-hidden bg-[#050b1a] text-white">
-
+<div>
+  <img src="./components/.png" alt="">
+  <img src="./components/.png" alt="">
+  <img src="./components/.png" alt="">
+  </div>
       <HoloBackground />
       <NavBar />
       <div className="relative z-10 p-6 md:p-10">
