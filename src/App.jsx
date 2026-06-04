@@ -18,9 +18,9 @@ export default function App() {
   {[1, 2, 3].map((num) => (
     <div key={num} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '200px' }}>
       
-  <img src="./components/.png" alt="">
-  <img src="./components/.png" alt="">
-  <img src="./components/.png" alt="">
+  <img src="./components/IMG_1220.png" alt="">
+  <img src="./components/IMG_1221.png" alt="">
+  <img src="./components/IMG_1226.png" alt="">
   </div>
       <HoloBackground />
       <NavBar />
